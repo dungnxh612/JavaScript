@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</head>
+<body>
+    <div>
+        <label>Enter a number: </label>
+    </div>
+    <div>
+        <input type="text" id="number" />
+        <button type="button" onclick="checkNumber()">Check number</button>
+        <p id="message"></p>
+    </div>
+    <script>
+        //trycatch
+        function checkNumber() {
+            var mes, tmp;
+            mes = document.getElementById("message");
+            mes.innerHTML = "";
+            tmp = document.getElementById("number").value;
+            try {
+                if (tmp == "") {
+                    throw "empty";
+                } else if (isNaN(tmp)) {
+                    throw "not a number";
+                } else {
+                    throw "number";
+                }
+            } catch (ex) {
+                mes.innerHTML = "Input is " + ex;
+            }
+        }
+
+        //callback
+        number.oninput = function () {
+            checkNumber();
+        };
+
+        //bind
+        var people = {
+            name: "dung",
+            age: 26
+        };
+        var info = function () {
+            return "welcome " + this.name + " " + this.age;
+        };
+        var tmp = info.bind(people);
+        console.dir(tmp);
+
+        //call
+        tmp = info.call(people);
+        console.log("call: " + tmp);
+
+        //apply
+        tmp = info.apply(people);
+        console.log("apply: " + tmp);
+
+        //string.trim()
+        var str = "   Hello";
+        console.log(str.trim());
+
+        //isArray
+        var arr = [1, 2, 3];
+        console.log("check array: " + Array.isArray(arr));
+
+        //foreach
+        var txt = "";
+        function fEach(value) {
+            txt = txt + value + " ";
+        }
+        arr.forEach(fEach);
+        console.log(txt);
+
+        //map
+        function mp(value, index, array) {
+            return value * 2;
+        }
+        var newArr = arr.map(mp);
+        console.log(newArr);
+
+        //filter
+        var filter = arr.filter(ft);
+        function ft(value) {
+            return value > 2;
+        }
+        console.log(filter);
+
+        //reduce
+        function redc (total, value) {
+            return total + value;
+        }
+        var red = arr.reduce(redc);
+        console.log(red);
+
+        //reduce right
+        var redR = arr.reduceRight(redc);
+        console.log(redR);
+
+        //array every
+        var arrE = arr.every(ft);
+        console.log(arrE);
+
+        //array some
+        var arrS = arr.some(ft);
+        console.log(arrS);
+
+        //array indexof
+        console.log(arr.indexOf(2));
+
+        //json
+        var text = '{"name":"Nam","age":"30"}';
+        var json = JSON.parse(text);
+        console.log(json.name + " " + json.age);
+
+        //json.stringify
+        var jsonToString = JSON.stringify(json);
+        console.log(jsonToString);
+
+        //arrow functions
+        const x = (x, y) => { return x * y };
+        console.log(x(10, 10));
+
+        //symbol
+        const person = {
+            name: "dung"
+        };
+        let id = Symbol('id');
+        person.id = 1111;
+        console.log(person.id);
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+</body>
+</html>
